@@ -17,10 +17,6 @@ document.write("</pre>");
 
 var names = [];
 
-students.forEach(student => {
-    names.push(student.name);
-});
-
 //document.writeln(names);
 var display=false
 
@@ -46,12 +42,14 @@ document.writeln("</pre>")
 */
 function calculateAverage() {
     //var i=0
-    var average=0
-    var suma=0 
+    let average=0
+    let suma=0 
+    let len=0
     students.forEach(student => {
         suma=suma+ student.score;
+        len++
     });
-   average =(suma/students.length)
+   average = (suma/len)
    return average.toFixed(2)
  
 }
@@ -62,10 +60,10 @@ function loadJSON() {
     let JaS= document.getElementById("JsonData");
     JaS.innerHTML= `<div class="col"><h3>JSON</h3></div>
     <div class="alert alert-danger"> <pre>${JSON.stringify(students,null,2)} </pre></div>`
+    loadStudent()
 }
-function loadData(){
-    loadJSON()
-       
+function loadStudent(){
+        
     let dataList = document.getElementById('listContainer');
     var title = document.createElement("section");
     title.classList.add('row');
@@ -76,12 +74,15 @@ function loadData(){
     dataList.append(title);
 
 
-    for (const student of students) {              
+    students.forEach(student => {
         var listItem = document.createElement("section");
         listItem.classList.add('row');
-        listItem.classList.add('border');
+       // listItem.classList.add('border');
 
-        if (student.score < 60){ 
+    let passScore= parseInt(document.getElementById("passScore").value);
+
+
+     if (student.score < passScore){ 
             listItem.innerHTML = `<div class="col">${student.id}</div>
             <div class="col">${student.name}</div>
             <div class="col score" >${student.score}</div>`;
@@ -94,7 +95,66 @@ function loadData(){
             <div class="col">${student.score}</div>`;
 
             dataList.append(listItem);
+       }
 
+    });
+
+    // for (const student of students) {              
+    //     var listItem = document.createElement("section");
+    //     listItem.classList.add('row');
+    //    // listItem.classList.add('border');
+
+    // let passScore= document.getElementById("passScore").value;
+
+
+    //  if (student.score < passScore){ 
+    //         listItem.innerHTML = `<div class="col">${student.id}</div>
+    //         <div class="col">${student.name}</div>
+    //         <div class="col score" >${student.score}</div>`;
+
+    //     dataList.append(listItem);
+
+    //     }else {
+    //         listItem.innerHTML = `<div class="col">${student.id}</div>
+    //         <div class="col">${student.name}</div>
+    //         <div class="col">${student.score}</div>`;
+
+    //         dataList.append(listItem);
+    //    }  } 
+    } //function load
+
+    // function displayPassScore(){
+    //     var passScore= document.getElementById("passScore").value;
+    //     //alert (passScore)
+    //    var childDivs = document.getElementById('listContainer').getElementsByTagName('div');
+
+    //     for( i=0; i< childDivs.length; i++ )
+    //     {
+    //     var childDiv = childDivs[i];
+    //     console.log(childDiv);
+    //     }   // }
+
+    function displayPassScore(){
+       // var passScore= document.getElementById("passScore").value;
+        let textTable = document.getElementById("listContainer");
+      //  alert (passScore)
+        while (textTable.hasChildNodes()) {
+            textTable.removeChild(textTable.lastChild);
+        }
+        loadStudent()
+     
+        //id.childnodes[i].childnodes[i]
+    }
+
+    function newStudent() {
+        var newId= document.getElementById("addStudentId").value;
+        var newName= document.getElementById("addStudentName").value;
+        var newScore= parseInt(document.getElementById("addStudentScore").value);
+
+        students.push({id:newId, name:newName, score:newScore});
+        displayPassScore()
         }
 
-       }  }
+  
+
+ 

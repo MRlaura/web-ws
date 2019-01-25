@@ -10,13 +10,21 @@
     <script src="data.js"></script>
 </head>
 
-<body class="container" onload=loadData()>
+ <body class="container" onload=loadJSON()>
+ 
     <br>
     <div id="JsonData">  </div>
     <header class="jumbotron"> <h1> Lists of Students</h1></header>
     
     <ol id="dataList">
     </ol>
+
+    <div>
+            <label for="name">Passing grade: </label>
+            <input type="text" id="passScore">
+        <button type="submit" onclick="displayPassScore()"> Submit</button>
+    </div>
+    <br>
     <div id="listContainer"  class="border" >    
             <!-- Student info is going to show here-->
     </div>
@@ -27,6 +35,21 @@
     <div id="buttonspace"> 
     <!-- <button class="btn btn-primary" onclick="loadData()"> Load</button> --> 
      <button class="btn btn-success" onclick="displayAverage()"> Average</button>
+    </div>
+
+    <div id="addStudent">
+    <br>
+        New Student
+            <label for="name">Name: </label>
+            <input type="text" id="addStudentName">
+
+            <label for="name">Score: </label>
+            <input type="text" id="addStudentScore">
+
+            <label for="name">id: </label>
+            <input type="text" id="addStudentId">
+
+            <button type="submit" onclick="newStudent()">Add</button>
     </div>
     <br>
 
