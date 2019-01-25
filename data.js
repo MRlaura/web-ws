@@ -1,114 +1,100 @@
 var students = [
-    {id: "1122222", name: "John", score: 90 }, // 0 {Object} => students[0] => students[0].score => total  
-    {id: "2223333", name: "Larry", score: 60 }, // 1
-    {id: "4455555", name: "Joseph", score: 50 }, // 2
-    {id: "5526666", name: "Karla", score: 80}
+    {id: 123,name: "John", score: 90 }, 
+    {id: 124,name: "Larry", score: 60 }, 
+    {id: 135,name: "Joseph", score: 50 }, 
+    {id: 142,name: "Ana", score: 70 }, 
 ];
 
-document.write("<h3>JSON</h3>");
-document.write("<pre class='alert alert-secondary'>"); // 1) Bootstrap class
+//document.writeln(students.length);
+/*
+document.write("<pre>");
 document.write(JSON.stringify(students, undefined, 2));
 document.write("</pre>");
-document.write("<br/>");
+*/
+
+//document.writeln(`<pre>${JSON.stringify(students,null,2)}</pre>`);
+
+
 var names = [];
 
 students.forEach(student => {
     names.push(student.name);
 });
 
-document.writeln("Students are:" + names);
+//document.writeln(names);
+var display=false
 
-document.write("<pre>");
-document.writeln(`Average: ${calculateAverage()}`);
-document.write("</pre>");
+function displayAverage() {
+    // called by button average
+display =!display; // display the average only one time, if the average is already there, do not change
+var resultSection= document.getElementById("resultAverage");
+resultSection.classList.add("alert");
+resultSection.classList.add("alert-info");
 
-function calculateAverage(){
-
-    var average = 0;
+    var paragraph= document.getElementById("parrafo");
+    paragraph.classList.add("badge");
+    paragraph.classList.add("badge-info"); 
+    paragraph.innerText= ("The average is " + calculateAverage());
+    resultSection.appendChild(paragraph)
+     
+}
+/*
+document.writeln("<pre>")
+document.writeln("Average: ",calculateAverage() )
+document.writeln(`Average: ${calculateAverage()}`)
+document.writeln("</pre>")
+*/
+function calculateAverage() {
+    //var i=0
+    var average=0
+    var suma=0 
     students.forEach(student => {
-        average = average + student.score;
+        suma=suma+ student.score;
     });
-    average = average / students.length;
-
-    return average;
+   average =(suma/students.length)
+   return average.toFixed(2)
+ 
 }
 
-function loadDataGrid() {
 
-    var i = 0;
-    let dataList = document.getElementById("dataList");
-    
-    while (i < students.length)
-    {
-        var listItem = document.createElement("section");
-        listItem.classList.add("row");
-        
-        var id = document.createElement("div");
-        id.classList.add("col-sm");
-        id.innerText =  students[i].id;
 
-        var name = document.createElement("div");
-        name.classList.add("col-sm");
-        name.innerText =  students[i].name;
-
-        var score = document.createElement("div");
-        score.classList.add("col-sm");
-        score.innerText =  students[i].score;
-
-        console.log(students[i]);
-
-        dataList.appendChild(listItem);
-
-        listItem.appendChild(id);
-        listItem.appendChild(name);
-        listItem.appendChild(score);
-
-        i = i + 1; // Alternatively, use i++;
-
-        // Other ways:
-        // i += 2;
-        // i += 3;
-    }
+function loadJSON() {
+    let JaS= document.getElementById("JsonData");
+    JaS.innerHTML= `<div class="col"><h3>JSON</h3></div>
+    <div class="alert alert-danger"> <pre>${JSON.stringify(students,null,2)} </pre></div>`
 }
-
-function displayAverage()
-{
-    var resultSection = document.getElementById("resultSection");
-    var paragraph = document.createElement("p");
-    paragraph.classList.add("badge"); // 2) Bootstrap classes
-    paragraph.classList.add("badge-info");
-
-    paragraph.innerText = "Average: " + calculateAverage();
-
-    resultSection.appendChild(paragraph);
-}
-
-function myReplacer(name, val) {
-    if (typeof val === 'string') {
-        return val.toString().toUpperCase();  
-     } else {
-        return val; // return as is
-    }
-};
-
-// Old-way of loading data (ol). No longer used
 function loadData(){
+    loadJSON()
+       
+    let dataList = document.getElementById('listContainer');
+    var title = document.createElement("section");
+    title.classList.add('row');
 
-    var i = 0;
-    let dataList = document.getElementById("dataList");
-    
-    while (i < students.length)
-    {
-        var listItem = document.createElement("li");
-        
-        console.log(students[i]);
-        listItem.innerText = students[i].name;
+    title.innerHTML=`<div class="col"><h5>Student id</h5></div> 
+    <div class="col"><h5>Name</h5></div> 
+    <div class="col"><h5>Grade</h5></div>`;
+    dataList.append(title);
 
-        dataList.appendChild(listItem);
-        i = i + 1; // Alternatively, use i++;
 
-        // Other ways:
-        // i += 2;
-        // i += 3;
-    }
-}
+    for (const student of students) {              
+        var listItem = document.createElement("section");
+        listItem.classList.add('row');
+        listItem.classList.add('border');
+
+        if (student.score < 60){ 
+            listItem.innerHTML = `<div class="col">${student.id}</div>
+            <div class="col">${student.name}</div>
+            <div class="col score" >${student.score}</div>`;
+
+        dataList.append(listItem);
+
+        }else {
+            listItem.innerHTML = `<div class="col">${student.id}</div>
+            <div class="col">${student.name}</div>
+            <div class="col">${student.score}</div>`;
+
+            dataList.append(listItem);
+
+        }
+
+       }  }

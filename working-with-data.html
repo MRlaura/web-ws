@@ -6,38 +6,29 @@
     <title>Working with data</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" media="screen" href="shared.css" />
+    <link rel="stylesheet" href="data.css"> 
     <script src="data.js"></script>
 </head>
-<body class="container" onload="loadDataGrid()">
-    <header class="jumbotron">
-        <h1>List of students</h1>
-    </header>
+
+<body class="container" onload=loadData()>
+    <br>
+    <div id="JsonData">  </div>
+    <header class="jumbotron"> <h1> Lists of Students</h1></header>
     
-    <section class="row-fluid">
-        <section class="btn-group">
-            <button class="btn btn-primary" onclick="loadDataGrid()">Load</button>
-            <button class="btn btn-secondary" onclick="displayAverage()">Average</button>
-        </section>
-    </section>
-    <section class="row-fluid">
-        <section id="dataList" class="border">
-            <div class="row">
-                <div class="col-md">
-                    <b>Id</b>
-                </div>
-                <div class="col-md">
-                    <b>Name</b>
-                </div>
-                <div class="col-md">
-                    <b>Score</b>
-                </div>
-            </div>
-        </section>
-    </section>
-    <section class="row-fluid">
-        <section id="resultSection" class="alert alert-info">
-        </section>
-    </section>
+    <ol id="dataList">
+    </ol>
+    <div id="listContainer"  class="border" >    
+            <!-- Student info is going to show here-->
+    </div>
+    <br>
+    <div id="resultAverage"> 
+        <p id="parrafo"></p>
+    </div>
+    <div id="buttonspace"> 
+    <!-- <button class="btn btn-primary" onclick="loadData()"> Load</button> --> 
+     <button class="btn btn-success" onclick="displayAverage()"> Average</button>
+    </div>
+    <br>
+
 </body>
 </html>
