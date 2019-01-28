@@ -5,9 +5,9 @@ fetchData();
 function fetchData(){
  
   var request = new XMLHttpRequest();
-  request.open('GET', URL, true);
+  request.open('GET', URL, true); //1
 
-  request.onload = function() {
+  request.onload = function() { //3
     const OK = 200;
     
     if (request.status !== OK) {
@@ -23,5 +23,5 @@ function fetchData(){
     loadStudent();
     loadJSON();
   };
-  request.send();
+  request.send(); //2
 }
