@@ -109,17 +109,53 @@ function loadStudent(){
             textTable.removeChild(textTable.lastChild);
         }
         loadStudent()
-    
-     }
+         }
 
     function newStudent() {
         var newId= document.getElementById("addStudentId").value;
         var newName= document.getElementById("addStudentName").value;
         var newScore= parseInt(document.getElementById("addStudentScore").value);
 
-        students.push({id:newId, name:newName, score:newScore});
-        displayPassScore()
+        if (newId==""  | newName=="" | newScore=="" ) {
+            alert ("All fields are required");
+
+        } else {
+            students.push({id:newId, name:newName, score:newScore});
+            clearModal()
+            displayPassScore()
         }
+      
+       
+        }
+
+    function clearModal() {
+        document.getElementById("addStudentId").value=null;
+        document.getElementById("addStudentName").value=null;
+        document.getElementById("addStudentScore").value=null;
+       
+    }
+
+        // $('#addStudent').click(function() {
+        //     //alert('called');
+        //      // we want to copy the 'id' from the button to the modal
+        //      var name = $(this).data('addStudentName').value;
+        //      var id = $(this).data('addStudentId').value;
+        //      var score= $(this).data('addStudentScore').value;
+         
+        //      // since the value of href is what we want, so I just did it like so
+        //      alert(name);
+        //      // used it as the selector for the modal
+        //      alert(id);
+        //      alert(score);
+        //      $(name).data('id', id);
+        //  });
+         
+        //  $('#savebutton').click(function() {
+        //      // now we grab it from the modal
+        //      var id = $('#myModal').data('id');
+        //       //var id=document.getElementById('myModal').getAttribute("data-id");
+        //        alert(id);
+        //  });    
 
   
 
