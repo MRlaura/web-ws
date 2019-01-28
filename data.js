@@ -98,41 +98,8 @@ function loadStudent(){
        }
 
     });
-
-    // for (const student of students) {              
-    //     var listItem = document.createElement("section");
-    //     listItem.classList.add('row');
-    //    // listItem.classList.add('border');
-
-    // let passScore= document.getElementById("passScore").value;
-
-
-    //  if (student.score < passScore){ 
-    //         listItem.innerHTML = `<div class="col">${student.id}</div>
-    //         <div class="col">${student.name}</div>
-    //         <div class="col score" >${student.score}</div>`;
-
-    //     dataList.append(listItem);
-
-    //     }else {
-    //         listItem.innerHTML = `<div class="col">${student.id}</div>
-    //         <div class="col">${student.name}</div>
-    //         <div class="col">${student.score}</div>`;
-
-    //         dataList.append(listItem);
-    //    }  } 
     } //function load
 
-    // function displayPassScore(){
-    //     var passScore= document.getElementById("passScore").value;
-    //     //alert (passScore)
-    //    var childDivs = document.getElementById('listContainer').getElementsByTagName('div');
-
-    //     for( i=0; i< childDivs.length; i++ )
-    //     {
-    //     var childDiv = childDivs[i];
-    //     console.log(childDiv);
-    //     }   // }
 
     function displayPassScore(){
        // var passScore= document.getElementById("passScore").value;
@@ -142,9 +109,8 @@ function loadStudent(){
             textTable.removeChild(textTable.lastChild);
         }
         loadStudent()
-     
-        //id.childnodes[i].childnodes[i]
-    }
+    
+     }
 
     function newStudent() {
         var newId= document.getElementById("addStudentId").value;
