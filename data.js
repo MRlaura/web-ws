@@ -1,9 +1,4 @@
-var students = [
-    {id: 123,name: "John", score: 90 }, 
-    {id: 124,name: "Larry", score: 60 }, 
-    {id: 135,name: "Joseph", score: 50 }, 
-    {id: 142,name: "Ana", score: 70 }, 
-];
+var students = [];
 
 //document.writeln(students.length);
 /*
@@ -58,10 +53,14 @@ function calculateAverage() {
 
 function loadJSON() {
     let JaS= document.getElementById("JsonData");
+    JaS.value=null;
     JaS.innerHTML= `<div class="col"><h3>JSON</h3></div>
     <div class="alert alert-danger"> <pre>${JSON.stringify(students,null,2)} </pre></div>`
-    loadStudent()
+  
+    
+    //loadStudent()
 }
+
 function loadStudent(){
         
     let dataList = document.getElementById('listContainer');
